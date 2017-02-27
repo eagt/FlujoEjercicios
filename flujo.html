@@ -7,58 +7,157 @@
 </head>
 <body>
     <div class="mermaid">
-graph TD
+graph LR
+  subgraph Edit Routine
+    g4[Remove]
+    g30[Save]
+    g50[Add/Change]
+    g1{Edit Routine}
+    g1-->|Yes|g2
+    g2[Add/Change or remove requiered fields]
+    g2-->g3
+    g3{Add/Change or Remove New Muscle}
+    g3-->|Add/Change|g50
+    g3-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g5
+    g5{Add/Change or Remove Name field}
+    g5-->|Add/Change|g50
+    g5-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g6
+    g6{Add/Change or Remove Weight field}
+    g6-->|Add/Change|g50
+    g6-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g7  
+    g7{Add/Change or Remove Weekly frequency field}
+    g7-->|Add/Change|g50
+    g7-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g8  
+    g8{Add/Change or Remove Days field}
+    g8-->|Add/Change|g50
+    g8-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g9  
+    g9{Add/Change or Remove Exercise Type field}
+    g9-->|Add/Change|g50
+    g9-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g10 
+    g10{Add/Change or Remove Distance field}    
+    g10-->|Add/Change|g50
+    g10-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g2-->g11 
+    g11{Add/Change or Remove Time field}
+    g11-->|Add/Change|g50
+    g11-->|Remove|g4
+    g50-->g30   
+    g4-->b1
+    g30-->b1
+    g1-->|No|b1
+  end
 
-  subgraph Create/Clone/View/Edit/Delete Routines
-    b1[Routines]
-    b2[Create New Routine]
-    b3[View Routine]
-    b4[Clone Routine]
-    b5[Set/Add fields to create a New Routine]
-    b6{Edit Routine?}
-    b7[Modify Routine fields and/or values as requiered]
-    b8{Finish creating New Routine?}
-    b9{Finish Modifying the Routine?}
-    b10[Delete Routine]
-    b11[Delete]
-    b12[Save Routine]
+  subgraph Create New Routine
+    f20[Save]
+    f1{Create New Routine}
+    f1-->|Yes|f15
+    f15[Add requiered fields]
+    f1-->|No|b1
+    f15-->f2
+    f2[Add Muscle field]
+    f2-->f20
+    f15-->f3
+    f3[Add Exercise Namefield]
+    f3-->f20
+    f15-->f4
+    f4[Add Weight field]
+    f4-->f20
+    f15-->f5
+    f5[Add Weekly Frequency field]
+    f5-->f20
+    f15-->f6
+    f6[Add Days field]
+    f6-->f20
+    f15-->f7
+    f7[Add Exercise Type field]
+    f7-->f20
+    f15-->f8
+    f8[Add Distance field]
+    f8-->f20
+    f15-->f9
+    f9[Add Time field]
+    f9-->f20
+    f20-->b1
+  end
+
+  subgraph Clone Routine
+    e1{Clone Routine?}
+    e1-->|Yes|g1
+    e1-->|No|b1
+  end
+
+  subgraph View Routine
+    d1{View Routine?}
+    d1-->|Yes|d2
+    d1-->|No|b1
+    d2[Show Routine]
+    d2-->d3
+    d3{Finish Viewing?}
+    d3-->|Yes|b1
+    d3-->|No|d2
+  end
+
+  subgraph Delete Routine
+    c1{Delete Routine?}
+    c1-->|Yes|c2
+    c2[Delete]
+    c1-->|No|b1
+    c2-->b1
+  end
+
+  subgraph User Actions 
+    b1[List Routines]
+    b2{Actions}
     b1-->b2
-    b1-->b3
-    b1-->b4
-    b1-->b10
-    b2-->b5
-    b3-->b6
-    b4-->b7
-    b5-->b8 
-    b6-->|Yes|b7
-    b6-->|No|b1
-    b7-->b9
-    b8-->|No|b5
-    b9-->|No|b7
-    b10-->b11
-    b11-->b1 
-    b8-->|Yes|b12
-    b9-->|Yes|b12
-    b12-->b1    
+    b2-->|Delete Routine|c1
+    b2-->|View Routine|d1
+    b2-->|Clone Routine|e1
+    b2-->|Create New Routine|f1
   end
 
   subgraph User Access
     a0(START)
-    a1[User uses Website as Guess]
-    a2{Have an account?}
-    a3{Signed Up?}
-    a4{Signed In?}
     a0-->a1
-    a1-->a2
-    a2-->|No|a3
+    a1{Is User Signed In?}
+    a1-->|Yes|b1
+    a1-->|No|a2
+    a2{Sign In?}
     a2-->|Yes|a4
-    a3-->|No|a1
-    a3-->|Yes|a4
-    a4-->|No|a1
-   end
-
-  a4-->|yes|b1
- 
-    </div>
+    a4[Enter email y password]
+    a4-->a6
+    a6{Signing In successful?}
+    a6-->|Yes|b1
+    a6-->|No|a4
+    a2-->|No|a3
+    a3{Sign Up?}
+    a3-->|Yes|a5
+    a5[get name, email and password]
+    a5-->a7
+    a7{Signing Up successful?}
+    a7-->|Yes|b1
+    a7-->|No|a5
+    a1-->b1
+  end
+  </div>
 </body>
 </html>
