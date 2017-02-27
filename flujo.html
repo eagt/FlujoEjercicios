@@ -11,31 +11,31 @@ graph TD
 
   subgraph Create/Clone/View/Edit/Delete Routines
     b1[Routines]
-    b2{Create New Routine?}
-    b3{View Routine}
-    b4{Clone existing Routine?}
+    b2[Create New Routine]
+    b3[View Routine]
+    b4[Clone Routine]
     b5[Set/Add fields to create a New Routine]
-    b6{Edit Routine}
+    b6{Edit Routine?}
     b7[Modify Routine fields and/or values as requiered]
     b8{Finish creating New Routine?}
     b9{Finish Modifying the Routine?}
-    b10{Delete Routine?}
+    b10[Delete Routine]
     b11[Delete]
     b12[Save Routine]
     b1-->b2
     b1-->b3
     b1-->b4
     b1-->b10
-    b2-->|Yes|b5
-    b3-->|Yes|b6
-    b4-->|Yes|b7
+    b2-->b5
+    b3-->b6
+    b4-->b7
     b5-->b8 
     b6-->|Yes|b7
     b6-->|No|b1
     b7-->b9
     b8-->|No|b5
     b9-->|No|b7
-    b10-->|Yes|b11
+    b10-->b11
     b11-->b1 
     b8-->|Yes|b12
     b9-->|Yes|b12
