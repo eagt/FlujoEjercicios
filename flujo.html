@@ -7,90 +7,31 @@
 </head>
 <body>
     <div class="mermaid">
-graph LR
+graph TB
   subgraph Edit Routine
-    g4[Remove]
+    g4[Remove any field]
     g30[Save]
-    g50[Add/Change]
+    g50[Add/Change any field]
+    g2{Add/Change or Remove fields<br/> as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days,<br/> Excercise Type, Distance and Type}-->|Add/Change|g50
     g1{Edit Routine}
     g1-->|Yes|g2
-    g2[Add/Change or remove requiered fields]
-    g2-->g3
-    g3{Add/Change or Remove New Muscle}
-    g3-->|Add/Change|g50
-    g3-->|Remove|g4
-    g50-->g30   
-    g2-->g5
-    g5{Add/Change or Remove Name field}
-    g5-->|Add/Change|g50
-    g5-->|Remove|g4
-    g50-->g30   
-    g2-->g6
-    g6{Add/Change or Remove Weight field}
-    g6-->|Add/Change|g50
-    g6-->|Remove|g4
-    g50-->g30   
-    g2-->g7  
-    g7{Add/Change or Remove Weekly frequency field}
-    g7-->|Add/Change|g50
-    g7-->|Remove|g4
-    g50-->g30   
-    g2-->g8  
-    g8{Add/Change or Remove Days field}
-    g8-->|Add/Change|g50
-    g8-->|Remove|g4
-    g50-->g30   
-    g2-->g9  
-    g9{Add/Change or Remove Exercise Type field}
-    g9-->|Add/Change|g50
-    g9-->|Remove|g4
-    g50-->g30   
-    g2-->g10 
-    g10{Add/Change or Remove Distance field}    
-    g10-->|Add/Change|g50
-    g10-->|Remove|g4
-    g50-->g30   
-    g2-->g11 
-    g11{Add/Change or Remove Time field}
-    g11-->|Add/Change|g50
-    g11-->|Remove|g4
-    g50-->g30   
+    g50-->g30
+    g2-->|Remove|g4
+    g4-->g30
     g30-->b1
-    g4-->b1
     g1-->|No|b1
   end
 
   subgraph Create New Routine
-    f20[Save]
-    f1{Create New Routine}
+    f7[Create]
+    f15[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Type]-->f10
+    f1{Create New Routine?}
     f1-->|Yes|f15
-    f15[Add requiered fields]
     f1-->|No|b1
-    f15-->f2
-    f2[Add Muscle field]
-    f2-->f20
-    f15-->f3
-    f3[Add Exercise Namefield]
-    f3-->f20
-    f15-->f4
-    f4[Add Weight field]
-    f4-->f20
-    f15-->f5
-    f5[Add Weekly Frequency field]
-    f5-->f20
-    f15-->f6
-    f6[Add Days field]
-    f6-->f20
-    f15-->f7
-    f7[Add Exercise Type field]
-    f7-->f20
-    f15-->f8
-    f8[Add Distance field]
-    f8-->f20
-    f15-->f9
-    f9[Add Time field]
-    f9-->f20
-    f20-->b1
+    f10{Finish Adding fields?}
+    f10-->|Yes|f7
+    f7-->b1
+    f10-->|No|f15   
   end
 
   subgraph Clone Routine
