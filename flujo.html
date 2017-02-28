@@ -13,85 +13,74 @@ graph TB
     g30[Save]
     g50[Add/Change any field]
     g2{Add/Change or Remove fields<br/> as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days,<br/> Excercise Type, Distance and Type}-->|Add/Change|g50
-    g1{Edit Routine}
-    g1-->|Yes|g2
     g50-->g30
     g2-->|Remove|g4
-    g4-->g30
-    g30-->b1
-    g1-->|No|b1
+    g4-->g30    
   end
 
   subgraph Create New Routine
-    f7[Create]
-    f15[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Type]-->f10
-    f1{Create New Routine?}
-    f1-->|Yes|f15
-    f1-->|No|b1
-    f10{Finish Adding fields?}
-    f10-->|Yes|f7
-    f7-->b1
-    f10-->|No|f15   
+    f1[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Type]
+    f3[Create]
+    f1-->f2
+    f2{Finish Adding fields?}
+    f2-->|Yes|f3
+    f2-->|No|f1    
   end
 
   subgraph Clone Routine
-    e1{Clone Routine?}
-    e1-->|Yes|g1
-    e1-->|No|b1
+    e1[Clone Routine]
+    e1-->g2
   end
 
   subgraph View Routine
-    d1{View Routine?}
-    d1-->|Yes|d2
-    d1-->|No|b1
-    d2[Show Routine]
-    d2-->d3
-    d3{Finish Viewing?}
-    d3-->|Yes|b1
-    d3-->|No|d2
+    d1[Show Routine]
+    d1-->d2
+    d2{Finish Viewing?}    
+    d2-->|No|d1
   end
 
   subgraph Delete Routine
-    c1{Delete Routine?}
-    c1-->|Yes|c2
-    c2[Delete]
-    c1-->|No|b1
-    c2-->b1
+    c1[Delete Routine]
   end
 
   subgraph User Actions 
-    b1[List Routines]
-    b2{Actions}
-    b1-->b2
-    b2-->|Delete Routine|c1
-    b2-->|View Routine|d1
-    b2-->|Clone Routine|e1
-    b2-->|Create New Routine|f1
+    P1{Actions}
+    P1-->|Delete Routine|c1
+    P1-->|View Routine|d1
+    P1-->|Clone Routine|e1
+    P1-->|Create New Routine|f1
+    P1-->|Edit Routine|g2
   end
 
   subgraph User Access
     a0(START)
     a0-->a1
     a1{Is User Signed In?}
-    a1-->|Yes|b1
     a1-->|No|a2
-    a2{Sign In?}
-    a2-->|Yes|a4
+    a2{Sign In/Sign Up?}
+    a2-->|Sign In|a4
+    a2-->|Sign Up|a5
     a4[Enter email y password]
     a4-->a6
     a6{Signing In successful?}
-    a6-->|Yes|b1
     a6-->|No|a4
-    a2-->|No|a3
-    a3{Sign Up?}
-    a3-->|Yes|a5
     a5[get name, email and password]
     a5-->a7
     a7{Signing Up successful?}
-    a7-->|Yes|b1
     a7-->|No|a5
-    a1-->b1
   end
+    
+    
+    a1-->|Yes|L1
+    a6-->|Yes|L1
+    a7-->|Yes|L1
+    c1-->L1
+    d2-->|Yes|L1
+    f3-->L1     
+    g30-->L1
+    L1-->P1
+    L1[List Routines]
+    
   </div>
 </body>
 </html>
