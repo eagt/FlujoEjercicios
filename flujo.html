@@ -9,22 +9,15 @@
     <div class="mermaid">
 graph TB
   subgraph Edit Routine
-    g4[Remove any field]
     g30[Save]
-    g50[Add/Change any field]
-    g2{Add/Change or Remove fields<br/> as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days,<br/> Excercise Type, Distance and Type}-->|Add/Change|g50
-    g50-->g30
-    g2-->|Remove|g4
-    g4-->g30    
+    g2[Add/Change or Remove fields<br/> as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days,<br/> Excercise Type, Distance and Time]
+    g2-->g30
   end
 
   subgraph Create New Routine
-    f1[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Type]
-    f3[Create]
-    f1-->f2
-    f2{Finish Adding fields?}
-    f2-->|Yes|f3
-    f2-->|No|f1    
+    f1[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Time]
+    f2[Create]
+    f1-->f2      
   end
 
   subgraph Clone Routine
@@ -76,7 +69,7 @@ graph TB
     a7-->|Yes|L1
     c1-->L1
     d2-->|Yes|L1
-    f3-->L1     
+    f2-->L1     
     g30-->L1
     L1-->P1
     L1[List Routines]
