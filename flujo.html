@@ -8,14 +8,50 @@
 <body>
     <div class="mermaid">
 graph TB
+  subgraph Contact Us
+    U1{Contact by Email/</br> phone}
+    U1-->|Email|U2
+    U2{Form completed and sent?}   
+    U2-->|No|U1
+    U1-->|Phone|U3
+    U3[Phone]
+  end
+
+  subgraph MyWorkouts
+    J1{View / Add to </br> MyRoutines /</br> Add Workout /</br> Delete}
+    J1-->|View|J2
+    J2{Finish Viewing?}
+    J2-->|Yes|J1
+    J2-->|No|J2
+    J1-->|Delete|J4
+    J4[Delete]
+    J4-->J1
+    J1-->|Add to MyRoutines|L1
+   end
+
+  subgraph Exercise Database
+    I1{View / Add to </br> MyWorkouts /</br> Add Exercise /</br> Delete}
+    I1-->|View|I2
+    I2{Finish Viewing?}
+    I2-->|Yes|I1
+    I2-->|No|I2
+    I1-->|Delete|I4
+    I4[Delete]
+    I4-->I1
+  end
+
+  subgraph Home
+   H1[Show some site information]
+  end
+
   subgraph Edit Routine
     g30[Save]
-    g2[Add/Change or Remove fields<br/> as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days,<br/> Excercise Type, Distance and Time]
+    g2[Add/Change or Remove any form fields<br/> as requiered]
     g2-->g30
   end
 
   subgraph Create New Routine
-    f1[Add any fields as requiered such as:<br/> Muscle,Excercise Name, Weight,<br/> Weekly Frequency, Days, Excercise Type,<br/> Distance and Time]
+    f1[Add any fields as requiered]
     f2[Create]
     f1-->f2      
   end
@@ -36,13 +72,27 @@ graph TB
     c1[Delete Routine]
   end
 
-  subgraph User Actions 
+  subgraph Routine Actions 
     P1{Actions}
     P1-->|Delete Routine|c1
     P1-->|View Routine|d1
     P1-->|Clone Routine|e1
     P1-->|Create New Routine|f1
     P1-->|Edit Routine|g2
+  end
+
+  subgraph Website
+    X1{Actions}
+    X1-->|HOME|H1
+    X1-->|Exercise Database|I1
+    X1-->|My Workouts|J1
+    X1-->|My Routines|L1
+    X1-->|Contact Us|U1
+    X1-->|Log Out|Y1
+  end
+
+  subgraph Log Out
+    Y1[Log Out]
   end
 
   subgraph User Access
@@ -63,17 +113,27 @@ graph TB
     a7-->|No|a5
   end
     
-    
+    X1{Website}
     a1-->|Yes|L1
-    a6-->|Yes|L1
-    a7-->|Yes|L1
+    a6-->|Yes|X1
+    a7-->|Yes|X1
     c1-->L1
     d2-->|Yes|L1
     f2-->L1     
     g30-->L1
     L1-->P1
     L1[List Routines]
-    
+    I1-->|Add to MyWorkouts|J1
+    I1-->|Add New|Z1
+    J1-->|Add New|Z1
+    Z1[Fill in form]
+    Z1-->W1
+    W1[Create]
+    W1-->J1
+    W1-->I1    
+    U2-->|Yes|X1
+    X1-->U1 
+
   </div>
 </body>
 </html>
